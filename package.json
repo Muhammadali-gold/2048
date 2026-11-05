@@ -1,0 +1,19 @@
+{
+  "name": "2048",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Merge tiles to 2048 with undo and win-then-continue.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "bash run.sh",
+    "test": "node --test"
+  },
+  "warp": {
+    "kind": "game",
+    "port": 4408,
+    "web": true
+  }
+}

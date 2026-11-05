@@ -1,0 +1,126 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #faf8ef;
+  color: #776e65;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif;
+}
+
+.tile {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cell.tile-128, .cell.tile-256, .cell.tile-512 { font-size: clamp(18px, 5vw, 36px); }
+.cell.tile-1024, .cell.tile-2048, .cell.tile-super { font-size: clamp(16px, 4vw, 30px); }
+
+main { width: min(92vw, 480px); padding: 24px 0 40px; }
+
+.topbar { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+h1 { margin: 0; font-size: 52px; line-height: 1; letter-spacing: -0.02em; }
+.tagline { margin: 6px 0 0; font-size: 14px; color: #8f857d; }
+
+.scores { display: flex; gap: 8px; }
+.score-box {
+  min-width: 84px;
+  padding: 8px 14px;
+  background: #bbada0;
+  border-radius: 6px;
+  text-align: center;
+  color: #eee4da;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.score-box strong { display: block; font-size: 22px; color: #fff; letter-spacing: 0; }
+
+.controls { display: flex; align-items: center; gap: 10px; margin: 18px 0 14px; }
+button {
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #8f7a66;
+  color: #f9f6f2;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { background: #7d6a58; }
+button:disabled { opacity: 0.45; cursor: default; }
+.moves { margin-left: auto; font-size: 13px; color: #9c8f86; font-variant-numeric: tabular-nums; }
+
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  padding: 12px;
+  background: #bbada0;
+  border-radius: 8px;
+  aspect-ratio: 1;
+  user-select: none;
+  touch-action: none;
+}
+
+.cell {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(238, 228, 218, 0.35);
+  border-radius: 5px;
+  font-weight: 800;
+  font-size: clamp(20px, 6vw, 44px);
+  font-variant-numeric: tabular-nums;
+  transition: background-color 90ms ease, color 90ms ease;
+}
+
+.tile-2 { background: #eee4da; color: #776e65; }
+.tile-4 { background: #ede0c8; color: #776e65; }
+.tile-8 { background: #f2b179; color: #f9f6f2; }
+.tile-16 { background: #f59563; color: #f9f6f2; }
+.tile-32 { background: #f67c5f; color: #f9f6f2; }
+.tile-64 { background: #f65e3b; color: #f9f6f2; }
+.tile-128 { background: #edcf72; color: #f9f6f2; }
+.tile-256 { background: #edcc61; color: #f9f6f2; }
+.tile-512 { background: #edc850; color: #f9f6f2; }
+.tile-1024 { background: #edc53f; color: #f9f6f2; }
+.tile-2048 { background: #edc22e; color: #f9f6f2; box-shadow: 0 0 22px rgba(237, 194, 46, 0.7); }
+.tile-super { background: #3c3a32; color: #f9f6f2; }
+
+.banner {
+  margin-top: 16px;
+  padding: 16px;
+  background: #8f7a66;
+  border-radius: 8px;
+  color: #f9f6f2;
+  text-align: center;
+}
+.banner h2 { margin: 0 0 4px; font-size: 22px; }
+.banner p { margin: 0 0 12px; font-size: 14px; opacity: 0.85; }
+.banner-actions { display: flex; gap: 8px; justify-content: center; }
+.banner button { background: #f9f6f2; color: #8f7a66; }
+.banner button:hover { background: #fff; }
+
+.hint { margin: 14px 0 0; font-size: 12px; text-align: center; color: #a89a90; }
+
+.leaderboard { margin-top: 24px; padding: 20px; background: #eee4da; border-radius: 8px; }
+.leaderboard h2 { margin: 0 0 12px; }
+.leaderboard ol { padding-left: 28px; }
+.leaderboard li { padding: 6px 0; }
+.leaderboard li strong { float: right; font-variant-numeric: tabular-nums; }
+.leaderboard button { margin: 4px 4px 0 0; }
+dialog { width: min(92vw, 380px); border: 0; border-radius: 12px; padding: 24px; background: #faf8ef; color: #776e65; }
+dialog::backdrop { background: rgb(40 30 20 / 55%); }
+dialog h2 { margin-top: 0; }
+dialog input { display: block; width: 100%; padding: 12px; margin-top: 8px; border: 2px solid #bbada0; border-radius: 6px; font: inherit; }
+#score-error { min-height: 1.4em; color: #a33d29; }

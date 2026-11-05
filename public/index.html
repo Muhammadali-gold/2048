@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>2048</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="topbar">
+        <div>
+          <h1>2048</h1>
+          <p class="tagline">Join the tiles, reach 2048.</p>
+        </div>
+        <div class="scores">
+          <div class="score-box"><span>Score</span><strong id="score">0</strong></div>
+          <div class="score-box"><span>Best</span><strong id="best">0</strong></div>
+        </div>
+      </header>
+
+      <div class="controls">
+        <button id="new" type="button">New game</button>
+        <button id="undo" type="button" disabled>Undo</button>
+        <span id="moves" class="moves">0 moves</span>
+      </div>
+
+      <div id="grid" class="grid" role="grid" aria-label="2048 board"></div>
+
+      <div id="banner" class="banner" hidden>
+        <h2 id="banner-title">You win</h2>
+        <p id="banner-body"></p>
+        <div class="banner-actions">
+          <button id="banner-primary" type="button">Keep going</button>
+          <button id="banner-secondary" type="button">New game</button>
+        </div>
+      </div>
+
+      <p class="hint">Arrow keys or WASD to slide · U to undo · N for a new game</p>
+      <section class="leaderboard" aria-labelledby="leaderboard-title">
+        <h2 id="leaderboard-title">Top 10</h2>
+        <p id="leaderboard-status" role="status">Loading leaderboard…</p>
+        <ol id="leaderboard-list"></ol>
+        <button id="save-score" type="button">Submit current score</button>
+        <button id="refresh-leaderboard" type="button">Refresh</button>
+      </section>
+    </main>
+    <dialog id="score-dialog" aria-labelledby="score-title">
+      <form id="score-form">
+        <h2 id="score-title">You made the top 10!</h2>
+        <p id="qualifying-score"></p>
+        <label for="player-name">Your name</label>
+        <input id="player-name" name="name" maxlength="24" required autocomplete="nickname" />
+        <p id="score-error" role="status"></p>
+        <div class="banner-actions">
+          <button id="submit-score" type="submit">Save score</button>
+          <button id="skip-score" type="button">Skip</button>
+        </div>
+      </form>
+    </dialog>
+    <script type="module" src="/app.mjs"></script>
+  </body>
+</html>
