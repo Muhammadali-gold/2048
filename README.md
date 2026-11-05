@@ -39,9 +39,26 @@ uv run pytest
 Python dependencies are installed automatically by `uv` on first launch.
 The browser and JavaScript game tests need no npm dependencies.
 
+## Deployment
+
+Pushing this repository to GitHub does not deploy the application. No automated
+deployment is configured.
+
+Use a host that supports Python 3.12+ and `uv`, and start the service with:
+```bash
+./run.sh --host 0.0.0.0
+```
+
+Set `PORT` to the port required by your host and configure `/health` as the health
+check endpoint. Store `LEADERBOARD_DB` on a writable, persistent volume so scores
+survive restarts and redeployments. Put the service behind an HTTPS reverse proxy
+or use your hosting provider's HTTPS endpoint.
+
+GitHub Pages alone cannot run the FastAPI server or SQLite leaderboard.
+
 ## Layout
 ```
-games/2048/
+2048/
   server.py         FastAPI server and SQLite leaderboard
   run.sh            server launcher (uv)
   pyproject.toml    Python dependencies
@@ -53,5 +70,5 @@ games/2048/
 
 ## Notes
 
-Pure reducer + DOM grid view. See `../../README.md` for the conventions shared by all 40 projects in
-this corpus.
+The game logic uses a pure reducer, with a DOM grid view in the browser and a
+FastAPI backend for the shared leaderboard.
